@@ -23,32 +23,34 @@ class Messenger:
             self.display.update_display(0.0)
             self.answer_displayed = False
         elif number == -2:  # Division
-            self.answer_displayed = False
             is_valid = self.check_input('/')
             if is_valid:
                 self.display_val.append('/')
                 self.display.update_display(''.join(self.display_val))
+                self.answer_displayed = False
         elif number == -3:  # Multiplication
-            self.answer_displayed = False
             is_valid = self.check_input('*')
             if is_valid:
                 self.display_val.append('*')
                 self.display.update_display(''.join(self.display_val))
+                self.answer_displayed = False
         elif number == -4:  # Subtraction
             if self.answer_displayed:
                 self.display_val.clear()
-            self.answer_displayed = False
             is_valid = self.check_input('-')
             if is_valid:
                 self.display_val.append('-')
                 self.display.update_display(''.join(self.display_val))
+                self.answer_displayed = False
         elif number == -5:  # Addition
-            self.answer_displayed = False
             is_valid = self.check_input('+')
             if is_valid:
                 self.display_val.append('+')
                 self.display.update_display(''.join(self.display_val))
+                self.answer_displayed = False
         elif number == -6:  # Equal
+            if self.answer_displayed:
+                return
             try:
                 result = self.calculator_engine.solve_expression(''.join(self.display_val))
                 result = 0.0 if result is None else result
@@ -67,12 +69,12 @@ class Messenger:
         elif number == -7:  # Dot
             if self.answer_displayed:
                 self.display_val.clear()
-                self.answer_displayed = False
 
             is_valid = self.check_input('.')
             if is_valid:
                 self.display_val.append('.')
                 self.display.update_display(''.join(self.display_val))
+                self.answer_displayed = False
 
     # returns true if it is valid input, false if invalid input
     # Inputs: digits(0-9), '+', '-', '/', '*', '.'
