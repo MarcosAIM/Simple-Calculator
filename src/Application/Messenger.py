@@ -35,7 +35,7 @@ class Messenger:
                 self.display.update_display(''.join(self.display_val))
                 self.answer_displayed = False
         elif number == -4:  # Subtraction
-            if self.answer_displayed:
+            if ''.join(self.display_val) == 'ERROR DIVISION BY ZERO':
                 self.display_val.clear()
             is_valid = self.check_input('-')
             if is_valid:
